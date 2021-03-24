@@ -1,12 +1,38 @@
 import { Type } from "@hydro-sdk/hydro-sdk/runtime/dart/core/index";
 import { Animation } from "@hydro-sdk/hydro-sdk/runtime/flutter/animation/index";
 import { BuildContext } from "@hydro-sdk/hydro-sdk/runtime/flutter/buildContext";
-import { Text, AnimatedListState, GlobalKey, Icon, State, StatefulWidget, Padding, AnimatedList, StatelessWidget, SizeTransition, GestureDetector, SizedBox, Center } from "@hydro-sdk/hydro-sdk/runtime/flutter/widgets/index";
-import { AppBar, Card, Colors, IconButton, Icons, MaterialApp, Scaffold, Theme } from "@hydro-sdk/hydro-sdk/runtime/flutter/material/index";
-import { Widget } from "@hydro-sdk/hydro-sdk/runtime/flutter/widget";
-import { EdgeInsets, Axis, TextStyle } from "@hydro-sdk/hydro-sdk/runtime/flutter/painting/index";
+import {
+    AppBar,
+    Card,
+    Colors,
+    IconButton,
+    Icons,
+    MaterialApp,
+    Scaffold,
+    Theme,
+} from "@hydro-sdk/hydro-sdk/runtime/flutter/material/index";
+import {
+    Axis,
+    EdgeInsets,
+    TextStyle,
+} from "@hydro-sdk/hydro-sdk/runtime/flutter/painting/index";
 import { HitTestBehavior } from "@hydro-sdk/hydro-sdk/runtime/flutter/rendering/index";
-
+import { Widget } from "@hydro-sdk/hydro-sdk/runtime/flutter/widget";
+import {
+    AnimatedList,
+    AnimatedListState,
+    Center,
+    GestureDetector,
+    GlobalKey,
+    Icon,
+    Padding,
+    SizeTransition,
+    SizedBox,
+    State,
+    StatefulWidget,
+    StatelessWidget,
+    Text,
+} from "@hydro-sdk/hydro-sdk/runtime/flutter/widgets/index";
 
 export class AnimatedListSample extends StatefulWidget {
     public createState(): _AnimatedListSampleState {
@@ -32,9 +58,9 @@ class _AnimatedListSampleState extends State<AnimatedListSample> {
         });
     }
 
-    public dispose() { }
+    public dispose() {}
 
-    public initState() { }
+    public initState() {}
 
     private buildRemovedItem = (
         item: number,
@@ -45,7 +71,7 @@ class _AnimatedListSampleState extends State<AnimatedListSample> {
             animation: animation,
             item: item,
             selected: false,
-            onTap: (): void => { },
+            onTap: (): void => {},
         });
     };
 

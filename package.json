@@ -8,7 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "flutter test",
+    "format": "flutter format lib test && npx prettier --write ota"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,18 @@
   "homepage": "https://github.com/hydro-sdk/animated-list-app#readme",
   "dependencies": {
     "@hydro-sdk/waveform": "0.0.1-nightly.31",
-    "@hydro-sdk/hydro-sdk": "0.0.1-nightly.170"
+    "@hydro-sdk/hydro-sdk": "0.0.1-nightly.170",
+    "prettier": "^2.2.0",
+    "prettier-plugin-import-sort": "0.0.6",
+    "import-sort-style-module": "^6.0.0"
+  },
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "style": "module",
+      "parser": "typescript"
+    }
+  },
+  "prettier": {
+    "tabWidth": 4
   }
 }
