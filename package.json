@@ -1,0 +1,23 @@
+{
+  "name": "animated-list-app",
+  "version": "1.0.0",
+  "description": "A demonstration of basic transition animations",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hydro-sdk/animated-list-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hydro-sdk/animated-list-app/issues"
+  },
+  "homepage": "https://github.com/hydro-sdk/animated-list-app#readme"
+}
