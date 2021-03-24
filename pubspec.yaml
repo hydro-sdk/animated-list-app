@@ -23,11 +23,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
+  hydro_sdk: 
+    git: 
+      ref: "0.0.1-nightly.170"
+      url: "git://github.com/hydro-sdk/hydro-sdk.git"
+  waveform: 
+    git: 
+      ref: "0.0.1-nightly.31"
+      url: "git://github.com/hydro-sdk/waveform.git"
 
 dev_dependencies:
   flutter_test:

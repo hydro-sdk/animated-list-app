@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/hydro-sdk/animated-list-app/issues"
   },
-  "homepage": "https://github.com/hydro-sdk/animated-list-app#readme"
+  "homepage": "https://github.com/hydro-sdk/animated-list-app#readme",
+  "dependencies": {
+    "@hydro-sdk/waveform": "0.0.1-nightly.31",
+    "@hydro-sdk/hydro-sdk": "0.0.1-nightly.170"
+  }
 }
