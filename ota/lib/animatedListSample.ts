@@ -8,9 +8,7 @@ import {
     MaterialApp,
     Scaffold,
 } from "@hydro-sdk/hydro-sdk/runtime/flutter/material/index";
-import {
-    EdgeInsets,
-} from "@hydro-sdk/hydro-sdk/runtime/flutter/painting/index";
+import { EdgeInsets } from "@hydro-sdk/hydro-sdk/runtime/flutter/painting/index";
 import { Widget } from "@hydro-sdk/hydro-sdk/runtime/flutter/widget";
 import {
     AnimatedList,
@@ -22,8 +20,9 @@ import {
     StatefulWidget,
     Text,
 } from "@hydro-sdk/hydro-sdk/runtime/flutter/widgets/index";
-import {ListModel} from "./listModel";
-import {CardItem} from "./cardItem";
+
+import { CardItem } from "./cardItem";
+import { ListModel } from "./listModel";
 
 export class AnimatedListSample extends StatefulWidget {
     public createState(): _AnimatedListSampleState {

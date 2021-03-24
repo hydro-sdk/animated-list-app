@@ -4,7 +4,8 @@ import {
     AnimatedListState,
     GlobalKey,
 } from "@hydro-sdk/hydro-sdk/runtime/flutter/widgets/index";
-import {CardItem} from "./cardItem";
+
+import { CardItem } from "./cardItem";
 
 export class ListModel<E> {
     public at: (idx: number) => E = (idx: number) => {
