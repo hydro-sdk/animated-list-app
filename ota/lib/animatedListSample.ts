@@ -3,36 +3,27 @@ import { Animation } from "@hydro-sdk/hydro-sdk/runtime/flutter/animation/index"
 import { BuildContext } from "@hydro-sdk/hydro-sdk/runtime/flutter/buildContext";
 import {
     AppBar,
-    Card,
-    Colors,
     IconButton,
     Icons,
     MaterialApp,
     Scaffold,
-    Theme,
 } from "@hydro-sdk/hydro-sdk/runtime/flutter/material/index";
 import {
-    Axis,
     EdgeInsets,
-    TextStyle,
 } from "@hydro-sdk/hydro-sdk/runtime/flutter/painting/index";
-import { HitTestBehavior } from "@hydro-sdk/hydro-sdk/runtime/flutter/rendering/index";
 import { Widget } from "@hydro-sdk/hydro-sdk/runtime/flutter/widget";
 import {
     AnimatedList,
     AnimatedListState,
-    Center,
-    GestureDetector,
     GlobalKey,
     Icon,
     Padding,
-    SizeTransition,
-    SizedBox,
     State,
     StatefulWidget,
-    StatelessWidget,
     Text,
 } from "@hydro-sdk/hydro-sdk/runtime/flutter/widgets/index";
+import {ListModel} from "./listModel";
+import {CardItem} from "./cardItem";
 
 export class AnimatedListSample extends StatefulWidget {
     public createState(): _AnimatedListSampleState {
@@ -149,126 +140,6 @@ class _AnimatedListSampleState extends State<AnimatedListSample> {
                         ): Widget => {
                             return this.buildItem(context, num, anim);
                         },
-                    }),
-                }),
-            }),
-        });
-    }
-}
-
-class ListModel<E> {
-    public at: (idx: number) => E = (idx: number) => {
-        return this.items[idx];
-    };
-
-    public removeAt: (idx: number) => E = (idx: number) => {
-        const removedItem: E = this.items.splice(idx, 1)[0];
-        this.items = this.items.filter((x) => x !== null);
-
-        if (removedItem !== null) {
-            this.listKey
-                .currentState()
-                .removeItem(
-                    idx,
-                    (context: BuildContext, animation: Animation<number>) => {
-                        return this.removedItemBuilder(
-                            removedItem,
-                            context,
-                            animation
-                        );
-                    }
-                );
-        }
-        return removedItem;
-    };
-
-    public insert(index: number, item: E): void {
-        this.items.splice(index, 0, item);
-        this.listKey.currentState().insertItem(index);
-    }
-    public indexOf = (item: E): number => {
-        return this.items.indexOf(item);
-    };
-    private items: Array<E>;
-    public readonly listKey: GlobalKey<AnimatedListState>;
-    public removedItemBuilder: (
-        item: E,
-        context: BuildContext,
-        animation: Animation<number>
-    ) => CardItem;
-
-    public length = (): number => {
-        return this.items.length;
-    };
-
-    public constructor(props: {
-        listKey: GlobalKey<AnimatedListState>;
-        removedItemBuilder: (
-            item: E,
-            context: BuildContext,
-            animation: Animation<number>
-        ) => CardItem;
-        initialItems: Array<E>;
-    }) {
-        this.listKey = props.listKey;
-        this.removedItemBuilder = props.removedItemBuilder;
-        this.items = props.initialItems;
-    }
-}
-
-export interface CardItemProps {
-    animation: Animation<number>;
-    onTap: () => void;
-    item: number;
-    selected: boolean;
-}
-
-class CardItem extends StatelessWidget {
-    public animation: Animation<number>;
-    public onTap: () => void;
-    public item: number;
-    public selected: boolean;
-    public tag = "";
-
-    public constructor(props: CardItemProps) {
-        super();
-        this.animation = props.animation;
-        this.onTap = props.onTap;
-        this.item = props.item;
-        this.selected = props.selected;
-    }
-
-    public build(context: BuildContext): Widget {
-        let textStyle: TextStyle = Theme.of(context).textTheme.display1;
-        if (this.selected) {
-            textStyle = textStyle.copyWith({
-                color: Colors.lightGreenAccent.swatch[400],
-            });
-        }
-
-        return new Padding({
-            padding: EdgeInsets.all(2.0),
-            child: new SizeTransition({
-                axis: Axis.vertical,
-                sizeFactor: this.animation,
-                child: new GestureDetector({
-                    behavior: HitTestBehavior.opaque,
-                    onTap: (): void => {
-                        this.onTap();
-                    },
-                    child: new SizedBox({
-                        height: 128,
-                        child: new Card({
-                            color:
-                                Colors.primaries[
-                                    this.item % Colors.primaries.length
-                                ].swatch[500],
-                            child: new Center({
-                                child: new Text(`Item ${this.item}`, {
-                                    style: textStyle,
-                                }),
-                            }),
-                        }),
                     }),
                 }),
             }),
