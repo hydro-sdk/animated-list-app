@@ -23,7 +23,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.0
   hydro_sdk: 
     git: 
       ref: "0.0.1-nightly.170"
