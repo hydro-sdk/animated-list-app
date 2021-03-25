@@ -1,0 +1,73 @@
+name: Waveform Catchup
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04]
+        include:
+          - os: ubuntu-18.04
+            TARGET: linux
+    steps:
+      - name: Install Linux Dependencies
+        run: |
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+          sudo apt-add-repository https://cli.github.com/packages
+          sudo apt update
+          sudo apt install gh
+      - name: Clone Flutter repository with stable channel
+        uses: actions/checkout@v2
+        with:
+          repository: "flutter/flutter"
+          ref: "1.22.0"
+          path: "flutter"
+          fetch-depth: 0
+
+      - name: Add Flutter to the PATH for Unix
+        run: echo "$GITHUB_WORKSPACE/flutter/bin" >> $GITHUB_PATH
+        if: runner.os != 'Windows'
+
+      - name: Add Dart to the PATH for Unix
+        run: echo "$GITHUB_WORKSPACE/flutter/bin/cache/dart-sdk/bin" >> $GITHUB_PATH
+        if: runner.os != 'Windows'
+
+      - name: Run Flutter doctor
+        run: flutter doctor -v
+
+      - name: Configure and Clone
+        env:
+          PUBLISH_EMAIL: ${{secrets.PUBLISH_EMAIL}}
+          PUBLISH_USERNAME: ${{secrets.PUBLISH_USERNAME}}
+          WAVEFORM_BOT_PAT: ${{secrets.WAVEFORM_BOT_PAT}}
+        run: |
+          git config --global user.email "$PUBLISH_EMAIL"
+          git config --global user.name "$PUBLISH_USERNAME"
+          git clone https://$PUBLISH_USERNAME:$WAVEFORM_BOT_PAT@github.com/hydro-sdk/animated-list-app.git
+      - name: Fetch
+        run: |
+          git fetch --all --tags
+          git checkout master
+          git pull
+        working-directory: animated_list
+
+      - name: Get packages for JS
+        run: npm install
+        working-directory: animated_list
+
+      - name: Get packages for Dart
+        run: flutter pub get
+        working-directory: animated_list
+
+      - name: Reset Working Tree
+        run: git reset --hard
+        working-directory: animated_list
+
+      - name: Catchup Waveform PRs
+        run: |
+          flutter pub run waveform:catchUpAuthoredTopicBranches --org=hydro-sdk --repo=animated-list-app --author=waveform-bot
+        working-directory: animated_list
