@@ -53,21 +53,21 @@ jobs:
           git fetch --all --tags
           git checkout main
           git pull
-        working-directory: animated_list
+        working-directory: animated-list-app
 
       - name: Get packages for JS
         run: npm install
-        working-directory: animated_list
+        working-directory: animated-list-app
 
       - name: Get packages for Dart
         run: flutter pub get
-        working-directory: animated_list
+        working-directory: animated-list-app
 
       - name: Reset Working Tree
         run: git reset --hard
-        working-directory: animated_list
+        working-directory: animated-list-app
 
       - name: Catchup Waveform PRs
         run: |
           flutter pub run waveform:catchUpAuthoredTopicBranches --org=hydro-sdk --repo=animated-list-app --author=waveform-bot
-        working-directory: animated_list
+        working-directory: animated-list-app
