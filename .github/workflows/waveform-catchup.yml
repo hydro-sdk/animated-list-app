@@ -51,7 +51,7 @@ jobs:
       - name: Fetch
         run: |
           git fetch --all --tags
-          git checkout master
+          git checkout main
           git pull
         working-directory: animated_list
 
