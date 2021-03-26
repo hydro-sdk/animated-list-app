@@ -2,7 +2,7 @@ name: Waveform Catchup
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
