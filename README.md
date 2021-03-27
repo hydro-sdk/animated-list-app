@@ -1,5 +1,5 @@
 # animated-list-app
-![Action Gif](https://github.com/hydro-sdk/animated-list-app/blob/master/media/action-gif.gif)  
+![Action Gif](https://github.com/hydro-sdk/animated-list-app/blob/main/media/action-gif.gif)  
 
 This repository is a demonstration of basic Flutter transition animations with Hydro-SDK.
 
