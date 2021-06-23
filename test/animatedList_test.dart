@@ -10,7 +10,7 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(const RunComponentFromFile(
       component: "animated-list",
-      path: "../assets/ota/animated-list.ota",
+      path: "assets/ota/animated-list.ota",
     ));
     await tester.pumpAndSettle();
 
